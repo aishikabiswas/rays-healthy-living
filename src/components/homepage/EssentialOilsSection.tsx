@@ -55,7 +55,7 @@ const EssentialOilsSection = () => {
           <div className="py-10 md:py-16 lg:py-20">
             <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1687371355066-ae98e9cfeb15?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                src="/img2.jpg"
                 alt="Essential oils and natural care setup"
                 className="w-full h-[420px] md:h-[520px] object-cover rounded-md shadow-lg"
                 loading="eager"
