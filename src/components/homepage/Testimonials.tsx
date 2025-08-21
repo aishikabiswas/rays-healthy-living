@@ -11,7 +11,7 @@ const slides = [
       "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=1600&auto=format&fit=crop",
     heading: "Happy Customer",
     quote:
-      "I am hugely benefitted by the effects of Maximum Cardio 4U. What a useful product! Helps me incredibly in boosting my immunity and keeping cardiac actions smooth. Oh yes! Lovely flavours too.",
+      "I took a 30 day vacation from June 30 to July 30. I drove over 3400 miles. The last 3 days of the trip, I was anxious to get home and drove too many hours without a rest stop.",
     name: "Henry E. Welling",
     location: "",
     avatar:
@@ -23,7 +23,7 @@ const slides = [
       "https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=1600&auto=format&fit=crop",
     heading: "Happy Customer",
     quote:
-      "I took a 30 day vacation from June 30 to July 30. I drove over 3400 miles. The last 3 days of the trip, I was anxious to get home and drove too many hours without a rest stop.",
+      "Ray's essential oils turned out to be awesome. It has an extraordinary effect on boosting brain functions along with dealing with pains reliefs and aches. This essential oils are now essential in my life.",
     name: "Mike F. ~GA",
     location: "",
     avatar:
@@ -35,7 +35,7 @@ const slides = [
       "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1600&auto=format&fit=crop",
     heading: "Happy Customer",
     quote:
-      "These supplements have become a part of my daily wellness. The energy is steady, sleep improved, and I love the clean ingredient list.",
+      "I am hugely benefitted by the effects of Maximum cardio 4U. What a useful product! Helps me incredibly in boosting my immunity and keeping cardiac actions smooth. Oh yes! Lovely flavours too.",
     name: "Alicia P. ~CA",
     location: "",
     avatar:
