@@ -441,38 +441,38 @@ const BlogSection = () => {
   const blogPosts = [
     {
       id: 1,
-      title: "The Ultimate Guide to Colloidal Silver Benefits",
+      title: "The Ultimate Guide to Natural Cardiovascular Wellness: Beyond Supplements",
       excerpt:
         "Discover the science-backed benefits of colloidal silver and how it can support your immune system naturally.",
       author: "Dr. Sarah Johnson",
       date: "March 15, 2024",
       category: "Health Tips",
       image:
-        "https://images.unsplash.com/photo-1707079917481-b0d32393008b?q=80&w=1200&auto=format&fit=crop",
+        "/blog/b1.png",
       alt: "Dropper bottle with silver-toned liquid and clean background",
     },
     {
       id: 2,
-      title: "Natural Stress Relief: Herbal Solutions That Work",
+      title: "Unlocking the Hidden Benefits of Superfoods for Heart Health",
       excerpt:
         "Explore proven herbal remedies for managing stress and anxiety in today's fast-paced world.",
       author: "Ray Wilson",
       date: "March 12, 2024",
       category: "Wellness",
       image:
-        "https://images.unsplash.com/photo-1505575967455-40e256f73376?q=80&w=1200&auto=format&fit=crop",
+        "/blog/b2.png",
       alt: "Herbal tea and calming botanical arrangement for stress relief",
     },
     {
       id: 3,
-      title: "Building Immunity: A Comprehensive Approach",
+      title: "10 Astonishing Vitamin E Supplement Benefits",
       excerpt:
         "Learn about holistic strategies to strengthen your immune system through nutrition and supplements.",
       author: "Dr. Maria Rodriguez",
       date: "March 8, 2024",
       category: "Immunity",
       image:
-        "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1200&auto=format&fit=crop",
+        "/blog/b3.jpg",
       alt: "Assorted fresh vegetables and ingredients for immune health",
     },
   ];
