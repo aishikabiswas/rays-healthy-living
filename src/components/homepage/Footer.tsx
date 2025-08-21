@@ -10,15 +10,17 @@ import {
   ShieldCheck,
   CreditCard,
   Headphones,
+  Recycle,
+  LifeBuoy
 } from "lucide-react";
 
 type LinkItem = { label: string; href: string };
 
 const features = [
   { icon: Truck, title: "FREE SHIPPING", desc: "Free On Order Over $99" },
-  { icon: ShieldCheck, title: "GUARANTEE", desc: "30 Days Money Back" },
+  { icon: Recycle, title: "GUARANTEE", desc: "30 Days Money Back" },
   { icon: CreditCard, title: "SAFE PAYMENT", desc: "Safe your online payment" },
-  { icon: Headphones, title: "ONLINE SUPPORT", desc: "We Have Support 24/7" },
+  { icon: LifeBuoy, title: "ONLINE SUPPORT", desc: "We Have Support 24/7" },
 ];
 
 const quickLinks: LinkItem[] = [
@@ -82,11 +84,11 @@ const Footer: React.FC = () => {
                   : "",
               ].join(" ")}
             >
-              <div className="shrink-0 rounded-md bg-orange-50 p-3 text-orange-600">
-                <Icon className="h-6 w-6" />
+              <div className="shrink-0 rounded-md p-3 text-orange-600">
+                <Icon className="h-10 w-10" />
               </div>
               <div>
-                <div className="font-semibold tracking-wide text-emerald-700">
+                <div className="font-bold tracking-wide  text-emerald-700">
                   {title}
                 </div>
                 <div className="text-sm text-neutral-600">{desc}</div>
@@ -100,7 +102,7 @@ const Footer: React.FC = () => {
       <div className="max-w-[1200px] mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         {/* About Us */}
         <div>
-          <h4 className="text-xl font-semibold text-emerald-800">About Us</h4>
+          <h4 className="text-xl font-bold text-black">About Us</h4>
           <span className="mt-2 mb-4 block h-1 w-12 rounded bg-emerald-600" />
           <p className="text-sm text-neutral-700 leading-6">
             Use of Ray’s Healthy Living (RHL) products and results may vary with
@@ -142,24 +144,8 @@ const Footer: React.FC = () => {
             <div className="flex items-center gap-3">
               {/* Place these images in public/assets/ */}
               <img
-                src="/assets/pay-mastercard.png"
+                src="/payment-options-pic.jpg"
                 alt="Mastercard"
-                className="h-7 w-auto"
-              />
-              <img
-                src="/assets/pay-amex.png"
-                alt="American Express"
-                className="h-7 w-auto"
-              />
-              <img src="/assets/pay-visa.png" alt="Visa" className="h-7 w-auto" />
-              <img
-                src="/assets/pay-discover.png"
-                alt="Discover"
-                className="h-7 w-auto"
-              />
-              <img
-                src="/assets/pay-paypal.png"
-                alt="PayPal"
                 className="h-7 w-auto"
               />
             </div>
@@ -168,21 +154,21 @@ const Footer: React.FC = () => {
 
         {/* Quick Links */}
         <div>
-          <h4 className="text-xl font-semibold text-emerald-800">Quick Links</h4>
+          <h4 className="text-xl font-bold text-black">Quick Links</h4>
           <span className="mt-2 mb-4 block h-1 w-12 rounded bg-emerald-600" />
           <ul className="space-y-2 text-sm">{quickList}</ul>
         </div>
 
         {/* Our Products */}
         <div>
-          <h4 className="text-xl font-semibold text-emerald-800">Our Products</h4>
+          <h4 className="text-xl font-bold text-black">Our Products</h4>
           <span className="mt-2 mb-4 block h-1 w-12 rounded bg-emerald-600" />
           <ul className="space-y-2 text-sm">{productList}</ul>
         </div>
 
         {/* Contact Details + App Badges */}
         <div>
-          <h4 className="text-xl font-semibold text-emerald-800">
+          <h4 className="text-xl font-bold text-black">
             Contact Details
           </h4>
           <span className="mt-2 mb-4 block h-1 w-12 rounded bg-emerald-600" />
@@ -231,12 +217,12 @@ const Footer: React.FC = () => {
             </h5>
             <div className="flex items-center gap-3">
               <img
-                src="/assets/appstore-badge.png"
+                src="/appstore-btn.png"
                 alt="Download on the App Store"
                 className="h-10 w-auto"
               />
               <img
-                src="/assets/googleplay-badge.png"
+                src="/googleplay-btn.png"
                 alt="Get it on Google Play"
                 className="h-10 w-auto"
               />
