@@ -590,7 +590,7 @@ const ProductSection: React.FC = () => {
         <div className="text-center mt-12">
           <a href="/products">
             <Button className="bg-orange-500 text-white px-6 py-2 rounded-br-[20px] rounded-tl-[20px] hover:bg-orange-600 font-medium">
-              Learn More
+              Shop More
             </Button>
           </a>
         </div>
