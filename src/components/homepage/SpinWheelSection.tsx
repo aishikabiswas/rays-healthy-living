@@ -1,22 +1,15 @@
+
 import React, { useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 
-/**
- * Functional Spin Wheel (6 slices) with highly visible labels
- * - Validates email
- * - Prevents multiple spins per email in current session
- * - Spins to a random slice and lands under the top pointer
- * - Labels pushed outward, outlined, and optional chip for readability
- */
-
 const SLICES = [
   { label: "Not Lucky", color: "#a06d2f" },
-  { label: "$15 OFF",   color: "#f28a1c" },
-  { label: "5% OFF",    color: "#a06d2f" },
-  { label: "$10 OFF",   color: "#7aaa3a" },
+  { label: "$15 OFF", color: "#f28a1c" },
+  { label: "5% OFF", color: "#a06d2f" },
+  { label: "$10 OFF", color: "#7aaa3a" },
+  { label: "Not Lucky", color: "#f28a1c" },
   { label: "Free Ship", color: "#7aaa3a" },
-  { label: "Not Lucky", color: "#a06d2f" },
 ] as const;
 
 const FULL_ROT = 360;
@@ -24,14 +17,13 @@ const FULL_ROT = 360;
 const SpinWheelSection: React.FC = () => {
   const [email, setEmail] = useState("");
   const [isSpinning, setIsSpinning] = useState(false);
-  const [rotation, setRotation] = useState(0); // current resting rotation (0–359)
+  const [rotation, setRotation] = useState(0);
   const [result, setResult] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const wheelRef = useRef<HTMLDivElement>(null);
 
-  const sliceAngle = 360 / SLICES.length; // 60°
+  const sliceAngle = 360 / SLICES.length;
 
-  // Session-level "already spun" check
   const hasSpun = useMemo(() => {
     if (!email) return false;
     return sessionStorage.getItem(`spun:${email}`) === "1";
@@ -42,7 +34,6 @@ const SpinWheelSection: React.FC = () => {
   }
 
   function pickRandomIndex() {
-    // Simple uniform random across 6 slices
     return Math.floor(Math.random() * SLICES.length);
   }
 
@@ -62,22 +53,14 @@ const SpinWheelSection: React.FC = () => {
 
     setIsSpinning(true);
 
-    // Choose a winning slice
     const winIndex = pickRandomIndex();
-
-    // Center angle of the winning slice
     const sliceCenter = winIndex * sliceAngle + sliceAngle / 2;
-
-    // Rotate so the chosen slice center lands at 0° (pointer at top),
-    // adding several full spins for flair.
     const extraSpins = 5;
     const target = rotation + extraSpins * FULL_ROT + (FULL_ROT - sliceCenter);
 
     if (wheelRef.current) {
       wheelRef.current.style.transition =
         "transform 3.2s cubic-bezier(0.2, 0.8, 0.2, 1)";
-      // force reflow so transition applies
-      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       wheelRef.current.offsetHeight;
       wheelRef.current.style.transform = `rotate(${target}deg)`;
     }
@@ -98,7 +81,6 @@ const SpinWheelSection: React.FC = () => {
     wheelRef.current?.addEventListener("transitionend", onEnd);
   }
 
-  // Paint the wheel using a conic-gradient
   const wheelBackground = useMemo(() => {
     const stops: string[] = [];
     for (let i = 0; i < SLICES.length; i++) {
@@ -113,7 +95,7 @@ const SpinWheelSection: React.FC = () => {
     <section className="bg-white py-20">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left column: heading + bullets + form */}
+          {/* Left column */}
           <div>
             <h2 className="text-4xl sm:text-5xl font-extrabold leading-tight text-gray-900">
               Get Latest Discounts
@@ -121,10 +103,8 @@ const SpinWheelSection: React.FC = () => {
               <br /> A Wheel
             </h2>
 
-            {/* Green underline */}
             <div className="mt-6 h-1 w-24 bg-green-600 rounded-full" />
 
-            {/* Bullets */}
             <ul className="mt-6 space-y-3 text-gray-700">
               <li className="flex items-start gap-3">
                 <Check className="w-5 h-5 text-green-600 mt-0.5" />
@@ -140,7 +120,6 @@ const SpinWheelSection: React.FC = () => {
               </li>
             </ul>
 
-            {/* Email + CTA */}
             <div className="mt-8 max-w-xl">
               <div className="flex flex-col sm:flex-row gap-3">
                 <input
@@ -171,19 +150,16 @@ const SpinWheelSection: React.FC = () => {
           {/* Right column: Wheel */}
           <div className="flex justify-center lg:justify-end">
             <div className="relative">
-              {/* Base shadow disc (purely for depth) */}
               <div className="w-[520px] h-[520px] rounded-full shadow-[0_20px_40px_rgba(0,0,0,0.15)]" />
 
-              {/* Wheel face (relative so labels can z-index above) */}
               <div
                 ref={wheelRef}
-                className="absolute inset-0 rounded-full  "
+                className="absolute inset-0 rounded-full"
                 style={{
                   background: wheelBackground,
                   transform: `rotate(${rotation}deg)`,
                 }}
               >
-                {/* Slice dividers */}
                 {[...Array(SLICES.length)].map((_, i) => (
                   <div
                     key={i}
@@ -196,54 +172,64 @@ const SpinWheelSection: React.FC = () => {
                   />
                 ))}
 
-                {/* Labels: farther from hub, bold, outlined + chip for contrast */}
                 {SLICES.map((s, i) => {
-                  const angle = i * sliceAngle + sliceAngle / 2; // center of slice
-                  const r = 0.72; // push outward so it clears the hub
-                  return (
-                    <div
-                      key={s.label + i}
-                      className="absolute left-1/2 top-1/2 z-[2]"
-                      style={{
-                        transform: `
-                          rotate(${angle}deg)
-                          translate(0, -${r * 50}%)
-                          rotate(-${angle}deg)
-                        `,
-                        transformOrigin: "center",
-                        pointerEvents: "none",
-                      }}
-                    >
-                      <span
-                        className="block text-center font-bold select-none"
-                        style={{
-                          fontSize: "clamp(12px, 1.8vw, 16px)",
-                          lineHeight: 1.1,
-                          color: "#fff",
-                          WebkitTextStroke: "1px rgba(0,0,0,0.55)",
-                          textShadow:
-                            "0 1px 2px rgba(0,0,0,0.6), 0 0 2px rgba(0,0,0,0.6)",
-                          whiteSpace: "nowrap",
-                          padding: "2px 6px",
-                          borderRadius: "6px",
-                          background: "rgba(0,0,0,0.22)", // guaranteed contrast
-                          boxShadow: "0 1px 2px rgba(0,0,0,0.25)",
-                        }}
-                      >
-                        {s.label}
-                      </span>
-                    </div>
-                  );
-                })}
+  const angle = i * sliceAngle + sliceAngle / 2;
+  const radius = 260; // half of wheel size
+  const offset = radius * 0.7; // ~70% outward for perfect balance
+
+  return (
+    <div
+      key={s.label + i}
+      className="absolute left-1/2 top-1/2 z-[2]"
+      style={{
+        transform: `
+          rotate(${angle}deg)
+          translate(0, -${offset}px)
+          rotate(-${angle}deg)
+        `,
+        transformOrigin: "center",
+        pointerEvents: "none",
+      }}
+    >
+      <span
+        className="block text-center font-bold select-none"
+        style={{
+          fontSize: "clamp(14px, 2vw, 18px)",
+          lineHeight: 1.2,
+          color: "#fff",
+          WebkitTextStroke: "1px rgba(0,0,0,0.55)",
+          textShadow: "0 2px 4px rgba(0,0,0,0.6), 0 0 3px rgba(0,0,0,0.6)",
+          whiteSpace: "nowrap",
+          padding: "2px 8px",
+          borderRadius: "6px",
+          background: "rgba(0,0,0,0.35)",
+          boxShadow: "0 2px 4px rgba(0,0,0,0.3)",
+          transform: "translate(-50%, -50%)", // center align the span itself
+        }}
+      >
+        {s.label}
+      </span>
+    </div>
+  );
+})}
               </div>
 
-              {/* Center hub (slightly smaller to avoid covering labels) */}
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-white shadow-md border border-black/10" />
+              {/* Smaller hub */}
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white shadow-md border border-black/10" />
 
-              {/* Pointer at top */}
-              <div className="absolute -top-2 left-1/2 -translate-x-1/2">
-                <div className="w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-b-[18px] border-b-red-600 drop-shadow" />
-              </div>
+              {/* Pointer */}
+              {/* Pointer */}
+<div
+  className="absolute left-1/2 bottom-0 z-20"
+  style={{
+    transform: "translate(-50%, 40%) rotate(180deg)", // rotate downwards
+  }}
+>
+  <div
+    className="w-0 h-0 border-l-[12px] border-r-[12px] border-t-[20px] border-l-transparent border-r-transparent border-t-red-600 drop-shadow-lg"
+  />
+</div>
+
             </div>
           </div>
         </div>
